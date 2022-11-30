@@ -1,9 +1,7 @@
 from openpyxl import load_workbook
-from openpyxl import workbook
-
 
 #carrega planilha
-wb = load_workbook(filename = 'template.xlsm', data_only=True)
+wb = load_workbook(filename='template.xlsm', data_only=True)
 
 #conta número de abas
 sheets_number = len(wb.worksheets)
