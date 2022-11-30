@@ -1,4 +1,6 @@
 from openpyxl import load_workbook
+from openpyxl import styles
+import openpyxl
 
 #carrega planilha
 wb = load_workbook(filename='template.xlsx', data_only=True)
@@ -27,6 +29,14 @@ wb.worksheets[0].cell(row=last_row_aba1 + 1, column=1).value = "teste"
 last_row_aba2 = wb.worksheets[1].max_row
 for i in range(1, last_row_aba1):
         wb.worksheets[1].cell(row=i, column=1).value = wb.worksheets[0].cell(row=i, column=1).value
+
+#cria variavel que recebe uma cor RGB hexadecimal
+my_color = openpyxl.styles.colors.Color(rgb='00FF0000')
+#cria variavel que adapta a cor my_color para ser aplicada como cor sólida a uma celula
+fill = openpyxl.styles.fills.PatternFill(patternType='solid', fgColor=my_color)
+
+#pinta a segunda célula da primeira coluna da aba1 de vermelho:
+wb.worksheets[0].cell(row=2, column=1).fill = fill
 
 #salva planilha
 wb.save('template.xlsx')
